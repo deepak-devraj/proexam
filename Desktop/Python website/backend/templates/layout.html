@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NaNdaN's Data Lab | Premium Technical Training{% endblock %}</title>
+    <style>
+        /* Modern Reset & Shared Tech UI Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0d1117; color: #c9d1d9; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        header { background-color: #161b22; border-bottom: 1px solid #30363d; padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        
+        /* BRAND LOGO HEADER INTEGRATION STYLES */
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .brand-logo {
+            height: 45px; 
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .logo-text { 
+            font-size: 1.4rem; 
+            font-weight: bold; 
+            color: #ffffff; 
+            letter-spacing: -0.5px;
+        }
+        .logo-text span { color: #58a6ff; }
+        
+        nav a { color: #8b949e; text-decoration: none; margin-left: 20px; transition: color 0.3s; font-weight: 500; }
+        nav a:hover { color: #58a6ff; }
+        
+        .main-content { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 40px 5%; }
+        
+        /* Shared Components Across Pages */
+        .cta-btn { background-color: #238636; color: #ffffff; padding: 12px 28px; font-weight: bold; text-decoration: none; border-radius: 6px; display: inline-block; transition: background-color 0.2s; border: none; cursor: pointer; }
+        .cta-btn:hover { background-color: #2ea043; }
+
+        /* Form Layout Styles */
+        .input-field { width: 100%; padding: 12px; background-color: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #ffffff; margin-bottom: 20px; font-size: 1rem; }
+        .input-field:focus { border-color: #58a6ff; outline: none; }
+
+        footer { background-color: #161b22; border-top: 1px solid #30363d; text-align: center; padding: 20px; font-size: 0.9rem; color: #8b949e; }
+    </style>
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo-link">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="NaNdaN's Data Lab" class="brand-logo">
+            <div class="logo-text">NaNdaN's <span>Data Lab</span></div>
+        </a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NaNdaN's Data Lab. Empowering Data Engineers and Python Developers Globally.</p>
+    </footer>
+
+</body>
+</html>

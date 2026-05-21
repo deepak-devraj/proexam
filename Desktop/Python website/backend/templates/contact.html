@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block title %}Contact Admissions | NaNdaN's Data Lab{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .contact-container { max-width: 600px; margin: 0 auto; padding: 20px 0; text-align: center; }
+    .contact-container h1 { color: #f0f6fc; margin-bottom: 15px; font-weight: 700; }
+    .contact-container p { color: #8b949e; margin-bottom: 30px; }
+    
+    form { background-color: #161b22; border: 1px solid #30363d; padding: 40px; border-radius: 8px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    label { display: block; margin-bottom: 8px; color: #c9d1d9; font-weight: 500; }
+    
+    /* WhatsApp Branded Button Accent */
+    .whatsapp-btn { background-color: #238636; color: #ffffff; padding: 14px 28px; font-weight: bold; text-decoration: none; border-radius: 6px; display: inline-block; border: none; cursor: pointer; width: 100%; font-size: 1rem; text-align: center; transition: background-color 0.2s; }
+    .whatsapp-btn:hover { background-color: #2ea043; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="contact-container">
+    <h1>Connect with the Lab</h1>
+    <p>Submit your onboarding application information details below to chat with us instantly on WhatsApp.</p>
+    
+    <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" class="input-field" placeholder="Alex Coder" required>
+        
+        <label for="email">Email Address</label>
+        <input type="email" id="email" class="input-field" placeholder="alex@example.com" required>
+        
+        <label for="course-select">Target Specialization</label>
+        <select id="course-select" class="input-field" style="width: 100%;">
+            <option value="General Inquiry">General Technical Question</option>
+            <option value="Core Essentials Mastery Track">Core Essentials Mastery Track</option>
+            <option value="Advanced OOP & Async Backend">Advanced OOP & Async Backend</option>
+            <option value="Enterprise Architect Cohort">Enterprise Architect Cohort</option>
+        </select>
+        
+        <label for="msg">Message / Inquiry Details</label>
+        <textarea id="msg" class="input-field" rows="5" placeholder="Tell me about your programming goals..." style="resize: vertical;" required></textarea>
+        
+        <button type="submit" class="whatsapp-btn">
+            Submit Application via WhatsApp
+        </button>
+    </form>
+</div>
+
+<script>
+// Auto-select course if clicked from the home page cards
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const chosenCourse = urlParams.get('selected_course');
+    if (chosenCourse) {
+        const dropdown = document.getElementById('course-select');
+        dropdown.value = chosenCourse;
+    }
+});
+
+function sendToWhatsApp(event) {
+    event.preventDefault(); // Prevents page from refreshing and throwing errors
+
+    // 1. Grab values from fields
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const course = document.getElementById('course-select').value;
+    const msg = document.getElementById('msg').value;
+
+    // 2. Your phone number with country code (91 for India)
+    const phoneNumber = "918712759651"; 
+
+    // 3. Construct a professional message template
+    const formattedMessage = `Hello, I would like to request an application callback.\n\n` +
+                             `*Name:* ${name}\n` +
+                             `*Email:* ${email}\n` +
+                             `*Selected Program:* ${course}\n` +
+                             `*Message:* ${msg}`;
+
+    // 4. Safely encode text strings for web transit
+    const encodedText = encodeURIComponent(formattedMessage);
+
+    // 5. Open connection in a new browser window/tab
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedText}`, '_blank');
+}
+</script>
+{% endblock %}

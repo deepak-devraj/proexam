@@ -1,0 +1,266 @@
+{% extends 'layout.html' %}
+
+{% block extra_styles %}
+
+<style>
+    /* Premium Color Accent System & Smooth Typography Adjustments */
+    :root {
+        --glow-primary: rgba(88, 166, 255, 0.15);
+        --border-glow: #58a6ff;
+        --accent-yellow: #ffd60a;
+    }
+
+    /* Ambient Background Radial Glow Highlights */
+    .hero-wrapper {
+        position: relative;
+        background: radial-gradient(circle at 80% 20%, var(--glow-primary) 0%, transparent 50%);
+        padding: 40px 0;
+    }
+
+    .hero { 
+        display: grid; 
+        grid-template-columns: 1.1fr 0.9fr; 
+        gap: 60px; 
+        align-items: center; 
+    }
+    
+    @media (max-width: 968px) { 
+        .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; } 
+        .code-window { margin: 0 auto; } 
+    }
+
+    .hero-text h1 { 
+        font-size: 3.6rem; 
+        color: #f0f6fc; 
+        line-height: 1.15; 
+        margin-bottom: 24px; 
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+    
+    .hero-text h1 span { 
+        color: #58a6ff; 
+        background: linear-gradient(90deg, #58a6ff, #bc8cff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-text p { font-size: 1.25rem; color: #8b949e; margin-bottom: 35px; max-width: 540px; }
+    
+    /* Premium Interactive Terminal Code Block */
+    .code-window { 
+        background-color: #0b0e14; 
+        border: 1px solid #30363d; 
+        border-radius: 12px; 
+        padding: 0; 
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; 
+        text-align: left; 
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6); 
+        overflow: hidden;
+        max-width: 520px;
+        width: 100%;
+    }
+    
+    .terminal-topbar { 
+        background-color: #161b22; 
+        border-bottom: 1px solid #30363d; 
+        padding: 12px 20px; 
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .terminal-dots { display: flex; gap: 8px; }
+    .terminal-title { color: #8b949e; font-size: 0.8rem; font-family: sans-serif; }
+
+    .code-body { display: flex; padding: 20px; font-size: 0.95rem; line-height: 1.7; overflow-x: auto; }
+    .line-numbers { color: #484f58; text-align: right; padding-right: 18px; user-select: none; border-right: 1px solid #21262d; margin-right: 15px; }
+    
+    .keyword { color: #ff7b72; font-weight: 600; } 
+    .class-name { color: #d2a8ff; } 
+    .string { color: #a5d6ff; }
+    .method { color: #79c0ff; }
+
+    /* Premium Social Proof Metrics Grid */
+    .metrics-container { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+        gap: 20px; 
+        margin: 60px 0 100px 0; 
+        background: linear-gradient(145deg, #161b22, #0d1117); 
+        border: 1px solid #30363d; 
+        padding: 40px 20px; 
+        border-radius: 12px; 
+        text-align: center; 
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    
+    .metric-item h2 { font-size: 2.8rem; color: #ffd60a; margin-bottom: 5px; font-weight: 700; }
+    .metric-item p { color: #8b949e; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+
+    /* Curriculum Track Matrix */
+    .section-headline { text-align: center; font-size: 2.5rem; color: #f0f6fc; margin-bottom: 15px; font-weight: 700; letter-spacing: -0.5px; }
+    .section-subtitle { text-align: center; color: #8b949e; font-size: 1.15rem; margin-bottom: 50px; max-width: 620px; margin-left: auto; margin-right: auto; }
+    
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 100px; }
+    
+    .feature-card { 
+        background-color: #161b22; 
+        border: 1px solid #30363d; 
+        padding: 35px; 
+        border-radius: 12px; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .feature-card:hover { 
+        transform: translateY(-8px); 
+        border-color: var(--border-glow); 
+        box-shadow: 0 12px 30px rgba(88, 166, 255, 0.1);
+    }
+    
+    .feature-card .icon-wrapper { 
+        background-color: #21262d; 
+        width: 50px; 
+        height: 50px; 
+        border-radius: 10px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        font-size: 1.5rem; 
+        margin-bottom: 20px; 
+        border: 1px solid #30363d;
+    }
+    
+    .feature-card h3 { color: #f0f6fc; margin-bottom: 12px; font-size: 1.4rem; font-weight: 600; }
+    .feature-card p { color: #8b949e; font-size: 1rem; line-height: 1.6; }
+
+    /* Student Testimonials Styling */
+    .testimonials-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-bottom: 60px; }
+    
+    .testimonial-card { 
+        background-color: #161b22; 
+        border: 1px solid #30363d; 
+        padding: 35px; 
+        border-radius: 12px; 
+        position: relative;
+    }
+    
+    .testimonial-card::before {
+        content: "“";
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        font-size: 4rem;
+        color: rgba(88, 166, 255, 0.08);
+        font-family: serif;
+    }
+    
+    .testimonial-card p { font-style: italic; color: #c9d1d9; margin-bottom: 25px; font-size: 1.05rem; position: relative; z-index: 1; }
+    .testimonial-card .author { font-weight: 600; color: #f0f6fc; font-size: 1rem; }
+    .testimonial-card .role { color: #58a6ff; font-size: 0.85rem; font-weight: 500; margin-top: 2px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="hero-wrapper">
+    <!-- Main Hero Container -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Stop Copying Code. <br><span>Master Python Engine.</span></h1>
+            <p>Accelerate your tech career with direct, mentor-led Python blueprints. Learn core automation, backend engineering, and clean architectural design patterns.</p>
+            <a href="/contact" class="cta-btn">Book a Placement Call</a>
+        </div>
+        
+        <!-- IDE Style Code Window Shell -->
+        <div class="code-window">
+            <div class="terminal-topbar">
+                <div class="terminal-dots">
+                    <div class="dot dot-r"></div>
+                    <div class="dot dot-y"></div>
+                    <div class="dot dot-g"></div>
+                </div>
+                <div class="terminal-title">architecture.py</div>
+            </div>
+            <div class="code-body">
+                <div class="line-numbers">
+                    1<br>2<br>3<br>4<br>5<br>6<br>7<br>8
+                </div>
+                <div class="code-lines">
+                    <p><span class="keyword">class</span> <span class="class-name">PythonStudent</span>:</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="class-name">__init__</span>(self):</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.status = <span class="string">"Learning"</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.stack = [<span class="string">"Core"</span>, <span class="string">"Flask"</span>]</p>
+                    <br>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">def</span> <span class="method">scale_skills</span>(self):</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.status = <span class="string">"Production Ready"</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> True</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Social Proof Metrics Section -->
+<section class="metrics-container">
+    <div class="metric-item">
+        <h2>5,000+</h2>
+        <p>Students Trained</p>
+    </div>
+    <div class="metric-item">
+        <h2>94%</h2>
+        <p>Placement Success</p>
+    </div>
+    <div class="metric-item">
+        <h2>10+ Yrs</h2>
+        <p>Industry Domain</p>
+    </div>
+    <div class="metric-item">
+        <h2>4.9/5</h2>
+        <p>Course Rating</p>
+    </div>
+</section>
+
+<!-- Curriculum Pillars Matrix -->
+<section style="padding: 20px 0;">
+    <h2 class="section-headline">Why This Methodology Works</h2>
+    <p class="section-subtitle">We drop boring slides and theory loops to focus strictly on enterprise framework application standards.</p>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="icon-wrapper">🏗️</div>
+            <h3>Architecture First</h3>
+            <p>Learn how to properly design systems with structural patterns, avoiding spaghetti code and future technical debt entirely.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-wrapper">⚡</div>
+            <h3>Asynchronous Engines</h3>
+            <p>Master concurrency, high-performance execution patterns, and backend performance pipelines using FastAPI and Asyncio.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon-wrapper">🛠️</div>
+            <h3>Production Testing</h3>
+            <p>Write bulletproof test suites using PyTest and mock APIs to build industry-ready code verification routines.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Alumni Success Stories Container -->
+<section style="padding: 20px 0 60px 0;">
+    <h2 class="section-headline">From Students to Systems Engineers</h2>
+    <p class="section-subtitle">Hear from alumni working at modern tech organizations after graduating from our core cohorts.</p>
+    
+    <div class="testimonials-container">
+        <div class="testimonial-card">
+            <p>"I went from simple copy-paste script hacking to confidently constructing scalable microservices. The focus on Object-Oriented patterns changed my absolute way of coding."</p>
+            <div class="author">Sarah Jenkins</div>
+            <div class="role">Backend Engineer @ FinTech Startup</div>
+        </div>
+        <div class="testimonial-card">
+            <p>"The architectural mentoring bypassed months of self-study frustration. The curriculum explains complex design concepts with incredible clarity and code validation execution."</p>
+            <div class="author">David Miller</div>
+            <div class="role">Systems Automation Lead</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

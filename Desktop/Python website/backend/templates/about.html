@@ -1,0 +1,211 @@
+{% extends 'layout.html' %}
+
+{% block title %}About the Instructor | Master Python{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Premium Color Accent System matching the Home Page */
+    :root {
+        --glow-primary: rgba(88, 166, 255, 0.15);
+        --border-glow: #58a6ff;
+        --accent-yellow: #ffd60a;
+    }
+
+    /* Split Grid Layout for a modern profile interface */
+    .about-wrapper {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 50px;
+        padding: 40px 0;
+    }
+
+    @media (max-width: 968px) {
+        .about-wrapper {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    /* Sidebar Column Styles */
+    .profile-sidebar {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 12px;
+        padding: 40px 30px;
+        text-align: center;
+        height: fit-content;
+        position: sticky;
+        top: 100px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, #58a6ff 0%, #1f6feb 100%);
+        border-radius: 50%;
+        margin: 0 auto 25px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+        border: 3px solid #30363d;
+    }
+
+    .profile-sidebar h2 {
+        color: #f0f6fc;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .profile-sidebar .title {
+        color: #58a6ff;
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .sidebar-stat {
+        background-color: #0d1117;
+        border: 1px solid #30363d;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .sidebar-stat span { font-size: 1.5rem; }
+    .sidebar-stat div p { color: #8b949e; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 2px; }
+    .sidebar-stat div h4 { color: #f0f6fc; font-size: 1.1rem; font-weight: 600; }
+
+    /* Main Content Column Styles */
+    .about-main h1 {
+        font-size: 2.8rem;
+        color: #f0f6fc;
+        font-weight: 800;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px;
+    }
+
+    .about-main .lead-text {
+        font-size: 1.25rem;
+        color: #8b949e;
+        line-height: 1.6;
+        margin-bottom: 35px;
+    }
+
+    .about-main h3 {
+        font-size: 1.5rem;
+        color: #f0f6fc;
+        margin: 40px 0 20px 0;
+        font-weight: 700;
+        border-left: 4px solid #58a6ff;
+        padding-left: 15px;
+    }
+
+    .about-main p {
+        color: #c9d1d9;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    /* Core Stack Grid Tags */
+    .stack-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .stack-tag {
+        background-color: #21262d;
+        border: 1px solid #30363d;
+        color: #c9d1d9;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-family: monospace;
+        transition: all 0.2s;
+    }
+
+    .stack-tag:hover {
+        border-color: #58a6ff;
+        background-color: #161b22;
+        color: #ffffff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="about-wrapper">
+    
+    <!-- Left Sidebar: Quick Profile Info -->
+    <aside class="profile-sidebar">
+        <div class="profile-avatar">👨‍💻</div>
+        <h2>Naresh Nandan</h2>
+        <p class="title">Senior Python Architect</p>
+        
+        <!-- Interactive Fact Badges -->
+        <div class="sidebar-stat">
+            <span>🚀</span>
+            <div>
+                <p>Experience</p>
+                <h4>10+ Years Prod</h4>
+            </div>
+        </div>
+        <div class="sidebar-stat">
+            <span>🎓</span>
+            <div>
+                <p>Graduates</p>
+                <h4>5,000+ Engineers</h4>
+            </div>
+        </div>
+        <div class="sidebar-stat">
+            <span>📦</span>
+            <div>
+                <p>Contributions</p>
+                <h4>40+ OSS Libraries</h4>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Right Main Area: Core Professional Biography -->
+    <main class="about-main">
+        <h1>Bridging the Gap Between Code and System Architecture</h1>
+        <p class="lead-text">I train intermediate engineers, data scientists, and self-taught developers to transition away from fragile code scripts into creating bulletproof enterprise applications.</p>
+        
+        <h3>My Technical Philosophy</h3>
+        <p>Most programming classes focus on basic syntax rules that you could easily find in documentation. My cohorts treat Python as an advanced system engineering tool. We study the core execution loops, abstract magic methods, and clean design structures that allow your applications to process thousands of requests concurrently without breaking down.</p>
+        
+        <p>When you sit down with me, we look at real-world backend infrastructure. We analyze how Python interacts with raw memory management, database pools, and modern networking layers.</p>
+
+        <h3>My Daily Production Stack</h3>
+        <p>I build systems and teach advanced design patterns centered entirely around the modern enterprise open-source ecosystem:</p>
+        
+        <div class="stack-grid">
+            <div class="stack-tag">Python 3.13+ Asyncio</div>
+            <div class="stack-tag">FastAPI Services</div>
+            <div class="stack-tag">Django Architecture</div>
+            <div class="stack-tag">Flask Microframework</div>
+            <div class="stack-tag">SQLAlchemy ORM Engine</div>
+            <div class="stack-tag">PostgreSQL Clustering</div>
+            <div class="stack-tag">Docker Containerization</div>
+            <div class="stack-tag">PyTest TDD Paradigms</div>
+        </div>
+
+        <h3>The Background Journey</h3>
+        <p>Before launching this training platform, I spent close to a decade engineering data distribution backends and automated tooling networks for scaling fintech startups and algorithmic web platforms.</p>
+        
+        <p>Today, I balance active consulting frameworks alongside deep tech education, helping developers around the globe skip years of tedious trial-and-error to confidently secure high-impact roles in top-tier technical operations.</p>
+    </main>
+
+</div>
+{% endblock %}
